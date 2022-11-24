@@ -1,0 +1,15 @@
+FROM alpine:3.11
+
+RUN mkdir /opt/tomcat
+
+WORKDIR /opt/tomcat
+
+RUN apk add wget
+
+RUN apk add openjdk11-jre-headless
+
+RUN wget "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.69/bin/apache-tomcat-9.0.69.tar.gz"
+
+RUN tar -zxvf apache-tomcat-9.0.69.tar.gz
+
+ENTRYPOINT [ "/opt/tomcat/apache-tomcat-9.0.69/bin/catalina.sh", "run" ]
